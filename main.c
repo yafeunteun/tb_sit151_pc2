@@ -4,15 +4,14 @@
 
 int main(int argc, char** argv)
 {
-	Polynome p;
+	Polynome poly1=NULL;
+    
 
-	element_liste_polynome e1 = {3, 6.8, NULL};
-	element_liste_polynome e2 = {2, 0.1, &e1};
-	element_liste_polynome e3 = {0, 0.8, &e2};
-
-	p = &e3;
-
-	affichage(p);
+	poly1 = insererEnQueue(0,0.8,NULL);
+    poly1 = insererEnQueue(2, 0.1, poly1);
+    poly1 = insererEnQueue(3, 6.8, poly1);
+    
+	affichage(poly1);
 
 	return 0;
 }

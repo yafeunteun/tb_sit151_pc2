@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "liste.h"
 
 void affichage(Polynome polynome)
@@ -30,6 +31,66 @@ void affichage(Polynome polynome)
 	}
 
 	puts("");                                                   //Passage à la ligne suivante
+}
+
+
+
+Polynome insererEnTete(int indice, double valeur, Polynome p)
+{
+    // Créer un nouveau monome (de type element_liste_polynome)
+    Polynome MonomeAAjouter = malloc(sizeof(element_liste_polynome));
+    
+    if(MonomeAAjouter!=NULL)
+    {
+        // Affecter les bonnes valeurs dans chacun de ses champs
+        MonomeAAjouter->indice_coefficient = indice;
+        MonomeAAjouter->valeur_coefficient = valeur;
+        MonomeAAjouter->suivant = p;
+        
+        // Le nouveau monome devant se situer en tête du polynôme, son adresse est la nouvelle adresse du polynôme
+        p=MonomeAAjouter;
+    }
+    else
+        exit(0);
+    
+    return p;
+    
+}
+
+
+
+
+
+Polynome insererEnQueue(int indice, double valeur, Polynome p)
+{
+    // Créer un nouveau monome (de type element_liste_polynome)
+    Polynome polynome = p;
+    Polynome MonomeAAjouter = malloc(sizeof(element_liste_polynome));
+    
+    if(MonomeAAjouter!=NULL)
+    {
+        // Affecter les bonnes valeurs dans chacun de ses champs
+        MonomeAAjouter->indice_coefficient = indice;
+        MonomeAAjouter->valeur_coefficient = valeur;
+        MonomeAAjouter->suivant = NULL;
+        
+        // Trouver le dernier monome actuellement dans la liste
+        if (polynome!=NULL)
+        {
+            while(polynome->suivant !=NULL)
+                polynome = polynome->suivant;
+        
+        // Remplacer la valeur NULL de son pointeur par l'adresse du nouveau monome
+        polynome->suivant = MonomeAAjouter;
+        }
+        else
+            p = MonomeAAjouter;
+    }
+    else
+        exit(0);
+    
+    return p;
+
 }
 	
 	
