@@ -93,4 +93,44 @@ Polynome insererEnQueue(int indice, double valeur, Polynome p)
 
 }
 	
-	
+
+
+Polynome add(Polynome p1, Polynome p2)
+{
+    Polynome poly1=p1, poly2=p2, polySomme=NULL;
+    Bool poly1Parcouru = False, poly2Parcouru = False;
+    double valeur;
+    
+    for(int i=0; !(poly1Parcouru && poly2Parcouru);i++)
+    {
+        
+        // On additionne, le cas échéant, les valeurs des coefficients d'ordre i de chacun des deux polynômes puis on pointe vers le monome suivant.
+        valeur = 0;
+        if(!poly1Parcouru)
+            if (poly1->indice_coefficient == i)
+            {
+                valeur += poly1->valeur_coefficient;
+                poly1 = poly1->suivant;
+            }
+        
+        if(!poly2Parcouru)
+            if (poly2->indice_coefficient ==i)
+            {
+                valeur += poly2->valeur_coefficient;
+                poly2 = poly2->suivant;
+            }
+        
+            
+        // Lorsque le pointeur sur les monomes pointe sur NULL, cela signifie que tous les monomes ont été traités
+        if (poly1 == NULL)
+            poly1Parcouru = True;
+        if(poly2 == NULL)
+            poly2Parcouru = True;
+        
+        // Si p1 et/ou p2 contiennent des monomes d'ordre i, on les ajoute au polynome somme
+        if(valeur)
+            polySomme = insererEnQueue(i, valeur, polySomme);
+    }
+    
+    return polySomme;
+}
