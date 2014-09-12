@@ -107,14 +107,14 @@ Polynome add(Polynome p1, Polynome p2)
         
         // On additionne, le cas échéant, les valeurs des coefficients d'ordre i de chacun des deux polynômes puis on pointe vers le monome suivant.
         valeur = 0;
-        if(!poly1Parcouru)
+        if(!poly1Parcouru && poly1!=NULL)
             if (poly1->indice_coefficient == i)
             {
                 valeur += poly1->valeur_coefficient;
                 poly1 = poly1->suivant;
             }
         
-        if(!poly2Parcouru)
+        if(!poly2Parcouru && poly2!=NULL)
             if (poly2->indice_coefficient ==i)
             {
                 valeur += poly2->valeur_coefficient;
@@ -150,4 +150,60 @@ double valeur(Polynome p, double x)
     }
     
     return image;
+}
+
+
+
+
+
+
+
+Polynome ajouterOuRemplacerIndiceValeur(int indice, double valeur, Polynome p)
+{
+    Polynome MonomeActuel = p, MonomePrecedent = p, NouveauMonome = NULL;
+    Bool EmplacementTrouve = False;
+    
+    while (!EmplacementTrouve)
+    {
+        if (p == NULL)
+        {
+            p = insererEnTete(indice, valeur, p);
+            EmplacementTrouve = True;
+        }
+        else if(indice<(MonomePrecedent->indice_coefficient))
+        {
+            p = insererEnTete(indice, valeur, p);
+            EmplacementTrouve = True;
+        }
+        else if (indice == (MonomeActuel->indice_coefficient))
+        {
+            MonomeActuel->valeur_coefficient = valeur;
+            EmplacementTrouve = True;
+        }
+        else if (indice>(MonomePrecedent->indice_coefficient) && (indice<MonomeActuel->valeur_coefficient))
+        {
+            NouveauMonome = malloc(sizeof(element_liste_polynome));
+            if (NouveauMonome)
+            {
+                NouveauMonome->suivant = MonomePrecedent->suivant;
+                MonomePrecedent->suivant = NouveauMonome;
+                NouveauMonome->indice_coefficient = indice;
+                NouveauMonome->valeur_coefficient = valeur;
+                EmplacementTrouve = True;
+            }
+            else
+                exit(0);
+        }
+        else if (MonomeActuel->suivant == NULL)
+        {
+            p = insererEnQueue(indice, valeur, p);
+            EmplacementTrouve = True;
+        }
+        else if (indice > (MonomeActuel->indice_coefficient))
+        {
+            MonomePrecedent = MonomeActuel;
+            MonomeActuel = MonomeActuel->suivant;
+        }
+    }
+    return p;
 }

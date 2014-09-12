@@ -17,4 +17,6 @@ void affichage(Polynome polynome);
 Polynome insererEnTete(int indice, double valeur, Polynome p);
 Polynome insererEnQueue(int indice, double valeur, Polynome p);
 Polynome add(Polynome p1, Polynome p2);
+Polynome ajouterOuRemplacerIndiceValeur(int indice, double valeur, Polynome p);
 double valeur(Polynome p, double x);
+
