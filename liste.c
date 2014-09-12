@@ -8,7 +8,7 @@ void affichage(Polynome polynome)
 
 	printf("f(x) = ");
 	
-	while(p != NULL)
+	while(p != NULL)                                            // Le pointeur *suivant du dernier élément de la liste pointe sur NULL. On détermine de cette façon que la fin de la liste est atteinte.
 	{
 		if(first_elem) {
 			first_elem = False;
@@ -16,7 +16,7 @@ void affichage(Polynome polynome)
 			printf(" + ");
 		}
 
-		printf("%.2f", p->valeur_coefficient);
+		printf("%.2f", p->valeur_coefficient);                  // Syntaxe équivalente à (*p).valeur_coefficient
 		
 		switch(p->indice_coefficient) {
 			case 0 :
@@ -26,10 +26,10 @@ void affichage(Polynome polynome)
 			default : printf("x^%d", p->indice_coefficient);
 		}
 
-		p = p->suivant;
+		p = p->suivant;                                         // Accès à l'élément suivant de la liste chainée
 	}
 
-	puts("");
+	puts("");                                                   //Passage à la ligne suivante
 }
 	
 	
