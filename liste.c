@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "liste.h"
 
 void affichage(Polynome polynome)
@@ -133,4 +134,20 @@ Polynome add(Polynome p1, Polynome p2)
     }
     
     return polySomme;
+}
+
+
+
+double valeur(Polynome p, double x)
+{
+    double image=0;
+    Polynome poly = p;
+    
+    while(poly!=NULL)
+    {
+        image+=(poly->valeur_coefficient)*pow(x,poly->indice_coefficient);
+        poly=poly->suivant;
+    }
+    
+    return image;
 }

@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv)
 {
-	Polynome poly1=NULL, poly2 = NULL, poly3=NULL;
+	Polynome poly1=NULL, poly2 = NULL;
     
 
 	poly1 = insererEnQueue(0,0.8,NULL);
@@ -17,9 +17,10 @@ int main(int argc, char** argv)
     
 	affichage(poly1);
     affichage(poly2);
+
+    affichage(add(poly1,poly2));
     
-    poly3 = add(poly1, poly2);
-    affichage(poly3);
+    printf("f(2.0) = %g \n", valeur(poly2, 2.));
 
 	return 0;
 }
