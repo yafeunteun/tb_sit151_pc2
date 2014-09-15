@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "tableau.h"
 
 
@@ -47,3 +48,14 @@ Polynome add(Polynome p1, Polynome p2)
 	return p;
 }
 
+double valeur(Polynome p, double x)
+{
+	int i = 0;
+	double val = 0;
+
+	for(i = 0; i <= p.degre; ++i) {
+		val += p.coefficients[i] * pow(x, i);
+	}
+
+	return val;
+}
