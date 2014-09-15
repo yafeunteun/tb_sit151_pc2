@@ -207,3 +207,21 @@ Polynome ajouterOuRemplacerIndiceValeur(int indice, double valeur, Polynome p)
     }
     return p;
 }
+
+
+void liberer(Polynome p)
+{
+	Polynome currentptr = NULL, nextptr = NULL ;
+	if(p != NULL){
+		currentptr = p;
+		nextptr = p->suivant;
+		while(currentptr != NULL) {
+			free(currentptr);
+			currentptr = nextptr;
+			if(nextptr != NULL) {
+				nextptr = nextptr->suivant;
+			}
+		}
+	}
+}
+

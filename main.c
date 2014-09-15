@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "liste.h"
 
 
@@ -26,5 +27,9 @@ int main(int argc, char** argv)
     
     printf("f(2.0) = %g \n", valeur(poly2, 2.));
 
+	liberer(poly1);
+	liberer(poly2);
 	return 0;
 }
+
+
